@@ -36,27 +36,36 @@ const Index = () => {
   };
 
   const moveBall = (direction) => {
-    setBallPosition((prevPosition) => {
-      let newPosition = prevPosition;
-      if (direction === "up") newPosition = Math.max(0, prevPosition - 1);
-      if (direction === "down") newPosition = Math.min(boardSize - 1, prevPosition + 1);
-      return newPosition;
-    });
+    if (direction === "left" || direction === "right") {
+      setBallPosition((prevPosition) => {
+        let newPosition = prevPosition;
+        if (direction === "left") newPosition = Math.max(0, prevPosition - 1);
+        if (direction === "right") newPosition = Math.min(boardSize - 1, prevPosition + 1);
+        return newPosition;
+      });
+    } else {
+      setBallYPosition((prevYPosition) => {
+        let newYPosition = prevYPosition;
+        if (direction === "up") newYPosition = Math.max(0, prevYPosition - 1);
+        if (direction === "down") newYPosition = Math.min(board[0].length - 1, prevYPosition + 1);
+        return newYPosition;
+      });
+    }
   };
 
   const handleKeyDown = (e) => {
     switch (e.key) {
       case "ArrowUp":
-        moveBall("up");
-        break;
-      case "ArrowDown":
-        moveBall("down");
-        break;
-      case "ArrowLeft":
         setBallYPosition((prev) => Math.max(0, prev - 1));
         break;
-      case "ArrowRight":
+      case "ArrowDown":
         setBallYPosition((prev) => Math.min(board[0].length - 1, prev + 1));
+        break;
+      case "ArrowLeft":
+        moveBall("left");
+        break;
+      case "ArrowRight":
+        moveBall("right");
         break;
       default:
         break;
