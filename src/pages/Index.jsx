@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 
-const boardSize = 5; // Define o tamanho do tabuleiro
-const initialBoard = [...Array(boardSize)].map(() => Array(boardSize).fill(0));
+const boardSize = 20;
+const initialBoard = [...Array(boardSize)].map(() => Array(20).fill(0));
 
 const Index = () => {
   const [board, setBoard] = useState(initialBoard);
