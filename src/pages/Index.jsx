@@ -6,6 +6,7 @@ const initialBoard = [...Array(boardSize)].map(() => Array(6).fill(0));
 
 const Index = () => {
   const [board, setBoard] = useState(initialBoard);
+  const [ballYPosition, setBallYPosition] = useState(board[0].length - 1);
   const [ballPosition, setBallPosition] = useState(Math.floor(boardSize / 2));
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
@@ -51,7 +52,12 @@ const Index = () => {
       case "ArrowDown":
         moveBall("down");
         break;
-      // Removed cases for ArrowLeft and ArrowRight as they are not needed
+      case "ArrowLeft":
+        setBallYPosition((prev) => Math.max(0, prev - 1));
+        break;
+      case "ArrowRight":
+        setBallYPosition((prev) => Math.min(board[0].length - 1, prev + 1));
+        break;
       default:
         break;
     }
@@ -63,19 +69,19 @@ const Index = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [ballYPosition]);
 
   return (
     <VStack p={4} spacing={4}>
       <Text fontSize="2xl">Score: {score}</Text>
       <Text fontSize="xl">
-        Ball Position: ({ballPosition}, {board[0].length - 1})
+        Ball Position: ({ballPosition}, {ballYPosition})
       </Text>
       <Flex justify="center">
         {board.map((row, rowIndex) => (
           <Flex key={rowIndex} direction="column">
             {row.map((cell, cellIndex) => (
-              <Box key={cellIndex} w="50px" h="50px" bg={cell === 1 ? "green.500" : ballPosition === rowIndex && cellIndex === board[0].length - 1 ? "red.500" : "white"} border="1px" borderColor="black" />
+              <Box key={cellIndex} w="50px" h="50px" bg={cell === 1 ? "green.500" : ballPosition === rowIndex && cellIndex === ballYPosition ? "red.500" : "white"} border="1px" borderColor="black" />
             ))}
           </Flex>
         ))}
