@@ -65,7 +65,7 @@ const Index = () => {
         {board.map((row, rowIndex) => (
           <Flex key={rowIndex} direction="column">
             {row.map((cell, cellIndex) => (
-              <Box key={cellIndex} w="50px" h="50px" bg={cell === 1 ? "green.500" : ballPosition === rowIndex && cellIndex === 0 ? "red.500" : "white"} border="1px" borderColor="black" />
+              <Box key={cellIndex} w="50px" h="50px" bg={cell === 1 ? "green.500" : ballPosition === rowIndex && cellIndex === board[0].length - 1 ? "red.500" : "white"} border="1px" borderColor="black" />
             ))}
           </Flex>
         ))}
