@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 
-const boardSize = 20;
+const boardSize = 6;
 const initialBoard = [...Array(boardSize)].map(() => Array(20).fill(0));
 
 const Index = () => {
