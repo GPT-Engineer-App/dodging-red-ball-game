@@ -102,7 +102,7 @@ const Index = () => {
       {gameOver && board[ballPosition][0] === 1 && (
         <>
           <Text fontSize="3xl" color="red.500">
-            Game Over!
+            Game over
           </Text>
           <Button
             colorScheme="teal"
