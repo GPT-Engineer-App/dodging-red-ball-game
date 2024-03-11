@@ -33,20 +33,43 @@ const Index = () => {
 
   const moveBall = (direction) => {
     setBallPosition((prevPosition) => {
-      if (direction === "up" && prevPosition > 0) {
-        return prevPosition - 1;
-      } else if (direction === "down" && prevPosition < boardSize - 1) {
-        return prevPosition + 1;
+      const newPosition = { ...prevPosition };
+      switch (direction) {
+        case "up":
+          if (newPosition.row > 0) newPosition.row -= 1;
+          break;
+        case "down":
+          if (newPosition.row < boardSize - 1) newPosition.row += 1;
+          break;
+        case "left":
+          if (newPosition.column > 0) newPosition.column -= 1;
+          break;
+        case "right":
+          if (newPosition.column < board[0].length - 1) newPosition.column += 1;
+          break;
+        default:
+          break;
       }
-      return prevPosition;
+      return newPosition;
     });
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "ArrowUp") {
-      moveBall("up");
-    } else if (e.key === "ArrowDown") {
-      moveBall("down");
+    switch (e.key) {
+      case "ArrowUp":
+        moveBall("up");
+        break;
+      case "ArrowDown":
+        moveBall("down");
+        break;
+      case "ArrowLeft":
+        moveBall("left");
+        break;
+      case "ArrowRight":
+        moveBall("right");
+        break;
+      default:
+        break;
     }
   };
 
