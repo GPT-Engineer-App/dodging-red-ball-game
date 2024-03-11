@@ -76,6 +76,9 @@ const Index = () => {
   return (
     <VStack p={4} spacing={4}>
       <Text fontSize="2xl">Score: {score}</Text>
+      <Text fontSize="xl">
+        Ball Position: ({ballPosition}, {board[0].length - 1})
+      </Text>
       <Flex justify="center">
         {board.map((row, rowIndex) => (
           <Flex key={rowIndex} direction="column">
