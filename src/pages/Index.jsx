@@ -24,8 +24,8 @@ const Index = () => {
     setScore((prevScore) => prevScore + 1);
     setBoard((prevBoard) => {
       return prevBoard.map((row) => {
-        const newRow = row.slice(1);
-        newRow.push(Math.floor(Math.random() * 2));
+        const newObstacle = Math.floor(Math.random() * 2);
+        const newRow = [newObstacle, ...row.slice(0, row.length - 1)];
         return newRow;
       });
     });
