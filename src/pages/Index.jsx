@@ -36,19 +36,13 @@ const Index = () => {
 
   const moveBall = (direction) => {
     setBallPosition((prevPosition) => {
-      const newPosition = { ...prevPosition };
+      let newPosition = prevPosition;
       switch (direction) {
         case "up":
-          if (newPosition.row > 0) newPosition.row -= 1;
+          newPosition = Math.max(0, prevPosition - 1);
           break;
         case "down":
-          if (newPosition.row < boardSize - 1) newPosition.row += 1;
-          break;
-        case "left":
-          if (newPosition.column > 0) newPosition.column -= 1;
-          break;
-        case "right":
-          if (newPosition.column < board[0].length - 1) newPosition.column += 1;
+          newPosition = Math.min(boardSize - 1, prevPosition + 1);
           break;
         default:
           break;
