@@ -70,7 +70,7 @@ const Index = () => {
           </Flex>
         ))}
       </Flex>
-      {gameOver && (
+      {gameOver && board[ballPosition][0] === 1 && (
         <>
           <Text fontSize="3xl" color="red.500">
             Game Over!
