@@ -23,11 +23,14 @@ const Index = () => {
   const updateBoard = () => {
     setScore(score + 1);
     setBoard((prevBoard) => {
-      const newBoard = prevBoard.map((row) => [Math.round(Math.random()), ...row.slice(0, -1)]);
-      if (newBoard[ballPosition][0] === 1) {
-        setGameOver(true);
-      }
-      return newBoard;
+      const newBoard = prevBoard.map((row, index) => {
+        if (index === ballPosition) {
+          const isTurningGreen = Math.round(Math.random()) === 1;
+          if (isTurningGreen) setGameOver(true);
+          return [isTurningGreen ? 1 : 0, ...row.slice(0, -1)];
+        }
+        return [Math.round(Math.random()), ...row.slice(0, -1)];
+      });
     });
   };
 
