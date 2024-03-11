@@ -24,7 +24,7 @@ const Index = () => {
     setScore(score + 1);
     setBoard((prevBoard) => {
       const newBoard = prevBoard.map((row) => [Math.round(Math.random()), ...row.slice(0, -1)]);
-      if (newBoard[ballPosition][0] === 1) {
+      if (newBoard[ballPosition][1] === 1) {
         setGameOver(true);
       }
       return newBoard;
