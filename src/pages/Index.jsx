@@ -51,6 +51,28 @@ const Index = () => {
     });
   };
 
+  const moveBallHorizontally = (direction) => {
+    setBoard((prevBoard) => {
+      let newBoard = [...prevBoard];
+      let newPosition = ballPosition;
+      if (direction === "left") {
+        newPosition = Math.max(0, ballPosition - 1);
+      } else if (direction === "right") {
+        newPosition = Math.min(boardSize - 1, ballPosition + 1);
+      }
+      if (newBoard[0][newPosition] === 1) {
+        setGameOver(true);
+      } else {
+        newBoard.forEach((row) => {
+          row[ballPosition] = 0;
+          row[newPosition] = 2;
+        });
+        setBallPosition(newPosition);
+      }
+      return newBoard;
+    });
+  };
+
   const handleKeyDown = (e) => {
     switch (e.key) {
       case "ArrowUp":
@@ -59,7 +81,12 @@ const Index = () => {
       case "ArrowDown":
         moveBall("down");
         break;
-      // Removed cases for ArrowLeft and ArrowRight as they are not needed
+      case "ArrowLeft":
+        moveBallHorizontally("left");
+        break;
+      case "ArrowRight":
+        moveBallHorizontally("right");
+        break;
       default:
         break;
     }
