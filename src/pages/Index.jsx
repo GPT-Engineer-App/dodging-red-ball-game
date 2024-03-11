@@ -21,18 +21,17 @@ const Index = () => {
   }, [gameOver]);
 
   const updateBoard = () => {
-    setScore(score + 1);
+    setScore((prevScore) => prevScore + 1);
     setBoard((prevBoard) => {
-      const newBoard = prevBoard.map((row) => {
-        let newRow = new Array(6).fill(0);
-        newRow[Math.floor(Math.random() * 6)] = 1;
+      return prevBoard.map((row) => {
+        const newRow = row.slice(1);
+        newRow.push(Math.floor(Math.random() * 2));
         return newRow;
       });
-      if (newBoard[ballPosition][1] === 1) {
-        setGameOver(true);
-      }
-      return newBoard;
     });
+    if (board[ballPosition][1] === 1) {
+      setGameOver(true);
+    }
   };
 
   const moveBall = (direction) => {
