@@ -37,16 +37,8 @@ const Index = () => {
   const moveBall = (direction) => {
     setBallPosition((prevPosition) => {
       let newPosition = prevPosition;
-      switch (direction) {
-        case "up":
-          newPosition = Math.max(0, prevPosition - 1);
-          break;
-        case "down":
-          newPosition = Math.min(boardSize - 1, prevPosition + 1);
-          break;
-        default:
-          break;
-      }
+      if (direction === "up") newPosition = Math.max(0, prevPosition - 1);
+      if (direction === "down") newPosition = Math.min(boardSize - 1, prevPosition + 1);
       return newPosition;
     });
   };
