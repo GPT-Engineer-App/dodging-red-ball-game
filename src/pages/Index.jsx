@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Flex, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Text, VStack, Button } from "@chakra-ui/react";
 
 const boardSize = 20;
 const initialBoard = [...Array(boardSize)].map(() => Array(6).fill(0));
@@ -71,9 +71,22 @@ const Index = () => {
         ))}
       </Flex>
       {gameOver && (
-        <Text fontSize="3xl" color="red.500">
-          Game Over!
-        </Text>
+        <>
+          <Text fontSize="3xl" color="red.500">
+            Game Over!
+          </Text>
+          <Button
+            colorScheme="teal"
+            onClick={() => {
+              setBoard(initialBoard);
+              setBallPosition(Math.floor(boardSize / 2));
+              setGameOver(false);
+              setScore(0);
+            }}
+          >
+            Restart Game
+          </Button>
+        </>
       )}
     </VStack>
   );
