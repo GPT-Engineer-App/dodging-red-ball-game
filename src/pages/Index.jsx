@@ -24,7 +24,7 @@ const Index = () => {
     setScore((prevScore) => prevScore + 1);
     setBoard((prevBoard) => {
       return prevBoard.map((row) => {
-        const newObstacle = Math.floor(Math.random() * 2);
+        const newObstacle = Math.floor(Math.random() * 3);
         const newRow = [newObstacle, ...row.slice(0, row.length - 1)];
         return newRow;
       });
