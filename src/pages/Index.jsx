@@ -30,8 +30,12 @@ const Index = () => {
         return newRow;
       });
     });
-    if (board[ballPosition][0] === 1) {
+    if (board[ballPosition][ballYPosition] === 1) {
       setGameOver(true);
+    } else {
+      if (board[ballPosition][0] === 1) {
+        setGameOver(true);
+      }
     }
   };
 
