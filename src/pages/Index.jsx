@@ -29,7 +29,7 @@ const Index = () => {
         return newRow;
       });
     });
-    if (board[ballPosition][1] === 1) {
+    if (board[ballPosition][0] === 1) {
       setGameOver(true);
     }
   };
@@ -59,12 +59,7 @@ const Index = () => {
       case "ArrowDown":
         moveBall("down");
         break;
-      case "ArrowLeft":
-        moveBall("left");
-        break;
-      case "ArrowRight":
-        moveBall("right");
-        break;
+      // Removed cases for ArrowLeft and ArrowRight as they are not needed
       default:
         break;
     }
